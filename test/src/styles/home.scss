@@ -1,0 +1,20 @@
+.home--container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2em;
+  list-style: none;
+  
+  // margin-top: 100px;
+
+  .item {
+    
+    background-color: lightblue;
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;
+    
+    p {
+      text-align: center;
+    }
+  }
+}
