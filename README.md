@@ -73,6 +73,6 @@ When we grade this exam we're not giving you a "score out of 100" for how many f
 
 After cloning or downloading the app.
 
-Firstly, `cd server`, type `yarn start`, this is to run the server first which should run on "http://localhost:3001/products".
+Firstly, `cd server`, type `yarn start`, this is to run the server first which should   run on "http://localhost:3001/products".
 
 Then you `cd test`, type `yarn start`, this is the client, which should run on "http://localhost:3000".
