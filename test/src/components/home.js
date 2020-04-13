@@ -67,18 +67,32 @@ class home extends Component {
         </select>
 
         <ul className="home--container">
-          {this.state.api.map((api) => (
-            <li className="item" key={api.id}>
-              <p style={{ fontSize: api.size }}>{api.face}</p>
-              <p>{accounting.formatMoney(api.price / 100, "$", "2", ".")}</p>
-              <p>{api.size} size</p>
-              <p>date added: {api.date}</p>
-            </li>
-          ))}
+          {
+            (this.state.map = this.state.api.length ? (
+              this.state.api.map((api) => (
+                <li className="item" key={api.id}>
+                  <p style={{ fontSize: api.size }}>{api.face}</p>
+                  <p>
+                    {accounting.formatMoney(api.price / 100, "$", "2", ".")}
+                  </p>
+                  <p>size: {api.size} </p>
+                  {new Intl.RelativeTimeFormat("en", {
+                    localeMatcher: "best fit",
+                    numeric: "auto",
+                    style: "long",
+                  }).formatToParts(-1, "day", api.date)}
+                </li>
+              ))
+            ) : (
+              <p>Loading.....</p>
+            ))
+          }
         </ul>
       </div>
     );
   }
 }
+
+// http://localhost:3001/products
 
 export default home;
