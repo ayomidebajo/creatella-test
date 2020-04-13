@@ -6,6 +6,7 @@ class home extends Component {
     api: [],
   };
 
+  //filter function
   onchangeHandler = (e) => {
     switch (e.target.value) {
       case "price": {
@@ -43,6 +44,7 @@ class home extends Component {
     }
   };
 
+  //loading the json api
   async componentDidMount() {
     const api = await fetch("http://localhost:3001/products")
       .then((response) => response.json())
@@ -58,6 +60,7 @@ class home extends Component {
 
   render() {
     return (
+      //filter button
       <div>
         <select onClick={this.onchangeHandler}>
           <option value="filter">filter</option>
@@ -66,33 +69,40 @@ class home extends Component {
           <option value="id">Sort by Id</option>
         </select>
 
+
+{/* products list */}
         <ul className="home--container">
-          {
-            (this.state.map = this.state.api.length ? (
-              this.state.api.map((api) => (
-                <li className="item" key={api.id}>
-                  <p style={{ fontSize: api.size }}>{api.face}</p>
-                  <p>
-                    {accounting.formatMoney(api.price / 100, "$", "2", ".")}
-                  </p>
-                  <p>size: {api.size} </p>
-                  {new Intl.RelativeTimeFormat("en", {
-                    localeMatcher: "best fit",
-                    numeric: "auto",
-                    style: "long",
-                  }).formatToParts(-1, "day", api.date)}
-                </li>
-              ))
-            ) : (
-              <p>Loading.....</p>
-            ))
-          }
+        {
+  (this.state.map = this.state.api.length ? (
+    this.state.api.map((api) => (
+      <li className="item" key={api.id}>
+        <p style={{ fontSize: api.size }}>{api.face}</p>
+        <p>
+          {accounting.formatMoney(api.price / 100, "$", "2", ".")}
+        </p>
+        <p>size: {api.size} </p>
+        {/* date formatting, using javascript, (halfly completed) */}
+        {new Intl.RelativeTimeFormat("en", {
+          localeMatcher: "best fit",
+          numeric: "auto",
+          style: "long",
+        }).formatToParts(-1, "day", api.date)}
+      </li>
+    ))
+  ) : (
+    <p>Loading.....</p>
+  ))
+}
         </ul>
       </div>
     );
   }
 }
 
-// http://localhost:3001/products
+
+
+
+
+
 
 export default home;
